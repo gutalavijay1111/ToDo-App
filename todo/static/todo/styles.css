@@ -1,33 +1,186 @@
+
+@font-face {
+	font-family: MomCake;
+	src: url(../todo/bs/fonts/MomCake.otf);
+  }
+
+@font-face {
+	font-family: MuliLight;
+	src: url(../todo/bs/fonts/MuliLight.ttf);
+  }
+
+@font-face {
+	font-family: Sign;
+	src: url(../todo/bs/fonts/Sign.ttf);
+  }
+
 body {
-	background: black;
-	font-family: 'Oswald', 'Futura', sans-serif;
+	/* background-image: url("https://images.pexels.com/photos/1040473/pexels-photo-1040473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1920&w=1080"); */
+	background: #1D3557;
 }
+
+h2,h3, .btn {
+	font-family: MomCake;
+}
+
+.head{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  #logo{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+
+  }
+
 #wrapper {
-	margin-top: 10% !important;
+	margin-top: 2% !important;
 }
-#content {
-	background: beige;
-	padding: 25px;
-}
-#content > h2 {
-	font-size: 18px;
-	text-align: center;
-	padding-top: 0;
-}
+
 .t10 {
 	margin-top: 10px;
 }
+
 .t20 {
 	margin-top: 20px;
 }
-.todo-completed {
-	text-decoration: line-through;
-	background: rgba(149, 165, 166, .3);
+
+.list-group-item.todo-completed{
+	background: #646F4B;
 }
-footer {
-	margin-top: 20px;
-	color: white;
+
+.list-group-item.todo-completed > span {
+	text-decoration: line-through;
+	background: #646F4B;
 }
 .list-group-item {
+	color: #F1FAEE;
+	background: #E63946;
+	margin-top: 7px;
+	font-family: MuliLight;
+	width: auto;
+	border: none;
+	display: flex;
+	justify-content: space-between;
+	line-height: 10px;
+	box-shadow:
+	0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+	0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+	0 12.5px 10px rgba(0, 0, 0, 0.06),
+	0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+	0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+	0 100px 80px rgba(0, 0, 0, 0.12)
+  ;
+}
+.list-group-item >span{
+	padding: 2px;
+	font-size: 25px;
+	margin-top: 2px;
+}
+ul :hover{
+	transform: scale(1.05);
+	transition: all 0.1s;
+	text-decoration: none;
+}
+
+h3{
+	text-align: center;
+	color: #F1FAEE;
+}
+
+.btn-toolbar{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
+}
+span{
+	color: #F1FAEE;
+	font-family: MomCake;
+	text-align: center;
+	font-size:	40px;
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+footer {
+	margin-top: 20px;
+}
+
+#sign{
+	font-family: Sign;
+	font-size: 20px;
+	background: white;
+	-webkit-background-clip: text;
+	color: transparent;
+}
+i{
+	margin-right: 3px;
+}
+.btn{
 	color: black;
+	background-color: #EEE0CB;  
+	box-shadow:
+	0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+	0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+	0 12.5px 10px rgba(0, 0, 0, 0.06),
+	0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+	0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+	0 100px 80px rgba(0, 0, 0, 0.12)
+  ;
+}
+
+.btn:hover{
+	transform: scale(1.05);
+	color: brown;
+	transition: all 0.5s;
+}
+
+#time {
+	/* display: inline; */
+	float: right;
+}
+ul{
+	padding-inline-start: 0;
+}
+hr{
+	color: #EEE0CB;
+	opacity: 0.6;
+}
+.form-control {
+	outline: 0; 
+	width: 100%;
+	background: #EEE0CB;
+	border-top-right-radius: 10px;
+	appearance: none;
+	transition: all 0.5s ease-in-out;
+	transition-property: width;
+	z-index: 1;
+	position: relative;
+	color: black;
+  }
+
+#add-btn {
+	position: relative;
+	right: 60px;
+	font-weight: light;
+	font-size: 20px;
+	letter-spacing: 2px;
+	background: #1D2021;
+	border-radius: 5px;
+	border: solid  #1D2021 ;
+	z-index: 1;
+	color: blanchedalmond;
+	padding: 5px;
+  }
+
+.form-control:not(:placeholder-shown) {
+	width: calc(100% - 60px);
+}
+
+.input-group{
+	margin-left: 55px;
 }
