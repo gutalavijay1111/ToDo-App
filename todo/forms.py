@@ -1,4 +1,5 @@
-from django import forms 
+from django import forms
+from .models import Tag 
 
 class TodoForm(forms.Form):
     text = forms.CharField(max_length=40, 
@@ -9,3 +10,4 @@ class TodoForm(forms.Form):
                 'aria-label' : 'Todo',
                 'aria-describedby' : 'add-btn'
             }))
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)

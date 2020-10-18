@@ -8,7 +8,10 @@
 		<title>ToDo App</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+		<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+		<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css'>
+		<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{% static 'todo/bs/css/flatly.min.css' %}" />
 		<link rel="stylesheet" href="{% static 'todo/styles.css' %}" />
@@ -27,7 +30,11 @@
 						{% csrf_token %}
 						<div class="form-group">
 							<div class="input-group">
-							  {{ form.text }}
+								{{ form.text }}
+								<div class="tags-input">
+									{{ form.tags }}
+								</div>
+
 							  <span class="input-group-btn">
 								  <button type="submit" class="btn btn-default" id="add-btn">ADD</button>
 							  </span>
@@ -53,16 +60,37 @@
 					</div>
 					<div>
 						<h3>Incomplete Task</h3>
-						<ul class="list-group-incomplete t20">
+						<ul class="list-group-incomplete t20 ui-sortable" >
 							{% for todo in incomplete_todo_list %}
 								{% if todo.complete %}
-								<li class="list-group-item todo-completed">
-									<a href = " {% url 'reverse' todo.id %} " >
-									<span>{{ todo.text }}</span> <p id="time" >{{ todo.created}} </p>fgdfg
-									</a>
-								</li> 								
-									{% else %}
-								<a href="{% url 'complete' todo.id %}"><li class="list-group-item"><span>{{ todo.text }}</span> <p>{{ todo.created }}</p></li></a>
+									<div class="task" id="task-{{todo.id}}">
+										<a href = " {% url 'reverse' todo.id %} " >
+										<li class="animated bounceOutLeft list-group-item todo-completed ">
+											<span>{{ todo.text }}</span>
+											<div class="tags">
+												{% for tag in todo.tags.all %}
+												<p class="tag" >{{tag}}</p>
+												{% endfor%}
+											</div>
+											 <p id="time" >{{ todo.created}} </p>fgdfg
+										</li> 
+										</a>
+									</div>
+								
+								{% else %}
+								<div class="task" id="task-{{todo.id}}">
+								<a href="{% url 'complete' todo.id %}">
+									<li class="list-group-item">
+										<span>{{ todo.text }}</span>
+										<div class="tags">
+											{% for tag in todo.tags.all %}
+											<p class="tag" >{{tag}}</p>
+											{% endfor%}
+										</div>
+										<p>{{ todo.created }}</p>
+									</li>
+								</a>
+								</div>
 								{% endif %}
 							{% endfor %}
 						</ul>
@@ -73,8 +101,18 @@
 						<ul class="list-group-complete t20">
 							{% for todo in complete_todo_list %}
 								{% if todo.complete %}
-								<a href = " {% url 'reverse' todo.id %} " ><li class="list-group-item todo-completed">
-									<span>{{ todo.text }}</span> <p>{{ todo.get_time_elapsed }}</p></li></a>
+								<div class="task" id="task-{{todo.id}}">
+								<a href = " {% url 'reverse' todo.id %} " >
+									<li class="list-group-item todo-completed">
+									<span>{{ todo.text }}</span>
+									<div class="tags">
+										{% for tag in todo.tags.all %}
+										<p class="tag" >{{tag}}</p>
+										{% endfor%}
+									</div>
+									<p>{{ todo.get_time_elapsed }}</p></li>
+								</a>
+								</div>
 								{% else %}
 								<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.text }}</li></a>
 								{% endif %}
@@ -92,5 +130,8 @@
 				</div>
 			</footer>
 		</div>
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+		<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-from .models import Todo
+from .models import Todo, Tag
 from .forms import TodoForm
 
 def index(request):
@@ -23,6 +23,12 @@ def addTodo(request):
     if form.is_valid():
         new_todo = Todo(text=request.POST['text'])
         new_todo.save()
+        tags = request.POST.getlist('tags')
+        for _ in tags:
+            print(">>>>>>>>",_)
+            tag = Tag.objects.get(id=_)
+            new_todo.tags.add(tag)
+            new_todo.save()
 
     return redirect('index')
 
